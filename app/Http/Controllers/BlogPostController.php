@@ -25,7 +25,7 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        
+        return view('blog.create');
     }
 
     /**
@@ -36,7 +36,12 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blogPost = BlogPost::create([
+                'title'     => $request->title,
+                'body'      => $request->body,
+                'user_id'   => 1
+        ]);
+        return redirect(route('blog.show', $blogPost->id));
     }
 
     /**
@@ -59,7 +64,7 @@ class BlogPostController extends Controller
      */
     public function edit(BlogPost $blogPost)
     {
-        //
+        return view('blog.edit', ['blogPost' => $blogPost]);
     }
 
     /**
