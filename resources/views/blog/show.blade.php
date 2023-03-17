@@ -20,7 +20,7 @@
             <a href="{{ route('blog.edit', $blogPost->id) }}" class="btn btn-success"> Modifier </a>
         </div>
         <div class="col-md-6">
-            <a href="{{ route('blog.edit', $blogPost->id) }}" class="btn btn-danger"> Delete </a>
+            <a href="" class="btn btn-danger"> Delete </a>
         </div>
     </div>
 @endsection

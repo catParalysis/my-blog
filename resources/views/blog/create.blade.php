@@ -19,11 +19,11 @@
                         </div>
                         <div class="card-body">   
                                 <div class="control-grup col-12">
-                                    <label for="title">Titre du message</label>
+                                    <label for="title">An interesting title</label>
                                     <input type="text" id="title" name="title" class="form-control">
                                 </div>
                                 <div class="control-grup col-12">
-                                    <label for="message">Message</label>
+                                    <label for="message">What do you wanna say?</label>
                                     <textarea class="form-control" id="message" name="body"></textarea>
                                 </div>
                         </div>

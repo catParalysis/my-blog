@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <ul>
                     @forelse ($blogs as $blog)
-                        <li><a class='text-warning stretched-link' href="{{ route('blog.show', $blog->id)}}">{{ $blog->title }}</a></li>
+                        <li><a class='text-warning' href="{{ route('show', $blog->id) }}">{{ $blog->title }} --- {{ $blog->id }}</a></li>
                     @empty
                         <li class="text-danger" >Ce blog est complètement vide</li>
                     @endforelse

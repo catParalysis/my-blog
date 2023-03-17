@@ -20,11 +20,11 @@
                         </div>
                         <div class="card-body">   
                                 <div class="control-grup col-12">
-                                    <label for="title">Titre du message</label>
+                                    <label for="title">Modification Title</label>
                                     <input type="text" id="title" value="{{ $blogPost->title }}" name="title" class="form-control">
                                 </div>
                                 <div class="control-grup col-12">
-                                    <label for="message">Message</label>
+                                    <label for="message">Modification content</label>
                                     <textarea class="form-control" id="message"  name="body">{{ $blogPost->body }}</textarea>
                                 </div>
                         </div>
