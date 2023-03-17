@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('blog', [BlogPostController::class, "index"])->name('blog.index');
-Route::get('blog/{blogPost}', [BlogPostController::class, "show"])->name('showSeul');
+Route::get('blog/{blogPost}', [BlogPostController::class, "show"])->name('blog.show');
