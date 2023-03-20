@@ -9,6 +9,15 @@
 </head>
 <body>
     <div class="container">
+    @if(session("success"))
+        
+   
+    <div class="row justify-content-center mt-1 mb-1">
+        <div class="col-md-6 mt-1 mb-1">
+            <div class="alert alert-success text-center"> {{ session("success")}}</div>
+        </div>
+    </div>
+    @endif
         @yield('content')
     </div>
     

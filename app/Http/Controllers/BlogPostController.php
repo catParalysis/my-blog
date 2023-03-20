@@ -41,7 +41,7 @@ class BlogPostController extends Controller
                 'body'      => $request->body,
                 'user_id'   => 1
         ]);
-        return redirect(route('blog.show', $blogPost->id));
+        return redirect(route('blog.index'))->withSuccess("Post Ajouté");
     }
 
     /**
@@ -80,6 +80,7 @@ class BlogPostController extends Controller
             'title' => $request->title , 
             'body' => $request->body
         ]);
+        return redirect(route('blog.index'))->withSuccess("Post Modifié");
     }
 
     /**
@@ -90,6 +91,8 @@ class BlogPostController extends Controller
      */
     public function destroy(BlogPost $blogPost)
     {
-        //
+        $blogPost->delete();
+
+        return redirect(route('blog.index'))->withSuccess("Post Deleted");
     }
 }
