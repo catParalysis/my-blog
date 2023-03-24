@@ -52,7 +52,7 @@ class BlogPostController extends Controller
      */
     public function show(BlogPost $blogPost)
     {
-     
+        
         return view('blog.show', ['blogPost' => $blogPost]);
     }
 
@@ -95,4 +95,50 @@ class BlogPostController extends Controller
 
         return redirect(route('blog.index'))->withSuccess("Post Deleted");
     }
+
+    public function query(){
+
+            //select * from blog_post
+            $blog1 = BlogPost::all();
+            $blog2 = BlogPost::select()->get();
+            $blog3 = BlogPost::select('id', 'title')->get();
+            $blog4 = BlogPost::select()->first();
+            $blog5 = BlogPost::find(1); // marche juste si la clé primaire est un int
+            $blog6 = BlogPost::select()
+                        ->where('id', 1)
+                        ->first();      // attention retourne multidimentionnel
+
+            $blog7 = BlogPost::select()
+                    ->where('user_id', '>', 1)
+                    ->orderby('title', 'desc') //orderby ascendant d'office sinon 2emem param asc ou desc
+                    ->get();    
+                    // parametre du millieu est automatiquement égal a moins d'etre specifié
+            $blog8 = BlogPost::select()
+                    ->where('id', 1) // pour AND on rajoute simplement un autre where
+                    ->where('title', 'patate') // pour OR on ajoute un orwhere
+                    ->orwhere('text', 'patate')
+                    ->get();  
+
+
+        // INSERT
+
+            Blogpost::create([]);
+
+            $blog = new BlogPost;
+            $blog->title = "Abc";
+            $blog->save();
+
+            $bloginated = BlogPost::select()
+                    ->paginate(5);
+            
+    }
+    public function page(){
+        $blogs = BlogPost::select()
+        ->paginate(5);
+        return view('blog.page', ['blogs' => $blogs]);
+    }
+
+
+
+
 }

@@ -8,7 +8,7 @@
         </div>
         <hr>
             <p>
-                Author : {{ $blogPost->user_id }} ToDoL8er
+                Author : {{ $blogPost->blogHasUser->name }}
             </p>
         <hr>
             {!! $blogPost->body !!}
@@ -20,7 +20,7 @@
             <a href="{{ route('blog.edit', $blogPost->id) }}" class="btn btn-sm btn-success"> Modifier </a>
         </div>
         <div class="col-md-6">
-            <input type="buttom" value="Delete" data-bs-toggle="modal" data-bs-target="#modalDelete" class="btn btn-danger btn-sm">
+            <input type="button" value="Delete" data-bs-toggle="modal" data-bs-target="#modalDelete" class="btn btn-danger btn-sm">
         </div>
     </div>
 
@@ -39,8 +39,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oui</button>
         <form  method="post">
         @csrf
-        @method('delete')
-            <input type="button" value="Delete"class="btn btn-danger">
+6      <input type="submit" value="Delete"class="btn btn-danger">
         </form>
       </div>
     </div>
