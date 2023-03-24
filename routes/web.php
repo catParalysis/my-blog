@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CustomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,7 @@ Route::post('blog-create', [BlogPostController::class, "store"]);
 Route::get('blog-edit/{blogPost}', [BlogPostController::class, "edit"])->name('blog.edit');
 Route::post('blog-edit/{blogPost}', [BlogPostController::class, "update"]);
 Route::delete('blog/{blogPost}', [BlogPostController::class, "destroy"]);
-
 Route::get('page', [BlogPostController::class, "page"]);
-
 Route::get('query', [BlogPostController::class, "query"]);
+Route::get('register', [CustomController::class, 'create'])->name("auth.create");
+Route::post('register', [CustomController::class, 'store']);
