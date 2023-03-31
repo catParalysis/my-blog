@@ -6,7 +6,7 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                <h1 class="display-6 text-center">LOGIN</h1>
+                <h1 class="display-6 text-center">REGISTER</h1>
                 </div>
                 <div class="card-body">
                 <form method="post">

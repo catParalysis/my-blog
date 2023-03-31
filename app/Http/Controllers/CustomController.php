@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class CustomController extends Controller
 {
@@ -14,7 +17,7 @@ class CustomController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.index');
     }
 
     /**
@@ -37,7 +40,7 @@ class CustomController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:55',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:25|unique:users',
             'password' => [
                 'required',
                 'string',
@@ -56,7 +59,9 @@ class CustomController extends Controller
         ]);
         $user = new User;
         $user->fill($request->all());
+        $user->password = Hash::make($request->password);
         $user->save();
+        return redirect(route('blog.index'))->withSuccess("Votre compte à bien été créé");
     }
 
     /**
@@ -102,5 +107,13 @@ class CustomController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function authentification(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        
     }
 }

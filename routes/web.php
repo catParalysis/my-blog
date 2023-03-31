@@ -30,3 +30,5 @@ Route::get('page', [BlogPostController::class, "page"]);
 Route::get('query', [BlogPostController::class, "query"]);
 Route::get('register', [CustomController::class, 'create'])->name("auth.create");
 Route::post('register', [CustomController::class, 'store']);
+Route::get('login', [CustomController::class, 'index'])->name("login"); // laravel reconnait la route login
+Route::post('authentification', [CustomController::class, 'authentification'])->name("authentification");
