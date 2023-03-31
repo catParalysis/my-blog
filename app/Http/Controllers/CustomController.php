@@ -97,8 +97,10 @@ class CustomController extends Controller
 
     public function userList()
     {
-
-        return view('auth.user-list');
+        $user = User::select('id','name', 'email')
+                ->orderby('name')
+                ->paginate(5);
+        return view('auth.user-list', ['users' => $user]);
 
     }
 
