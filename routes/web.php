@@ -32,3 +32,5 @@ Route::get('register', [CustomController::class, 'create'])->name("auth.create")
 Route::post('register', [CustomController::class, 'store']);
 Route::get('login', [CustomController::class, 'index'])->name("login"); // laravel reconnait la route login
 Route::post('authentification', [CustomController::class, 'authentification'])->name("authentification");
+Route::get('user-list', [CustomController::class, 'userList'])->name('user.list')->middleware('auth');
+Route::get('logout', [CustomController::class, 'logout'])->name('logout');

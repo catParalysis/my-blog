@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    
     <div class="container">
     @if(session("success"))
         

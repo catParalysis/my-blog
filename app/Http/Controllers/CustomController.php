@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +42,7 @@ class CustomController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:55',
-            'email' => 'required|string|email|max:25|unique:users',
+            'email' => 'required|string|email|max:45|unique:users',
             'password' => [
                 'required',
                 'string',
@@ -64,56 +66,44 @@ class CustomController extends Controller
         return redirect(route('blog.index'))->withSuccess("Votre compte à bien été créé");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    public function authentification(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
-
-    public function authentification(Request $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
         
+        $infos = $request->only('email','password');
+
+        if(!Auth::validate($infos)):
+            return redirect(route('login'))->withInput();
+        endif;
+
+        $user = Auth::getProvider()->retrieveByCredentials($infos);
+
+        Auth::login($user);
+
+        return redirect()->intended(route('user.list'));
+        
     }
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect(route('login'));
+            
+    }
+
+    public function userList()
+    {
+
+        return view('auth.user-list');
+
+    }
+
+  
+
+        
+    
 }
