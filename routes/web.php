@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CustomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,11 @@ Route::post('blog-create', [BlogPostController::class, "store"]);
 Route::get('blog-edit/{blogPost}', [BlogPostController::class, "edit"])->name('blog.edit');
 Route::post('blog-edit/{blogPost}', [BlogPostController::class, "update"]);
 Route::delete('blog/{blogPost}', [BlogPostController::class, "destroy"]);
-Route::delete('blog/{blogPost}', [BlogPostController::class, "destroy"]);
+Route::get('page', [BlogPostController::class, "page"]);
+Route::get('query', [BlogPostController::class, "query"]);
+Route::get('register', [CustomController::class, 'create'])->name("auth.create");
+Route::post('register', [CustomController::class, 'store']);
+Route::get('login', [CustomController::class, 'index'])->name("login"); // laravel reconnait la route login
+Route::post('authentification', [CustomController::class, 'authentification'])->name("authentification");
+Route::get('user-list', [CustomController::class, 'userList'])->name('user.list')->middleware('auth');
+Route::get('logout', [CustomController::class, 'logout'])->name('logout');
